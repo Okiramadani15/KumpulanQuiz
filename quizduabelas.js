@@ -17,7 +17,8 @@ let salah =0;
 
 nilai.push({"definition":"Sebutkan kota yang memiliki julukan kota Intan?", "term":"Garut"})
 
-if (!process.argv[2]){
+if (!process.argv[2]=== data);{
+  fs.readFileSync("data.json", "utf-8")
 console.log("tolong sertkan nama file sebagai inputan soalnya misal'node quizduabelas.js data.json'");
 }
 console.log("Selamat datang di permainan Tebak-tebakan, kamu akan diberikan pertanyaan dari file ini\n untuk bermain, jawablah dengan jawaban yang sesuai.\n silahkan isi jawabannya dengan benar ya!\n gunakan skip untuk menangguhkan pertanyaan dan diakhir pertanyaan yang akan ditanyakan.");
