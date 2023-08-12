@@ -1,5 +1,9 @@
 
-
+if (!process.argv[2]) {
+  console.log("tolong sertkan nama file sebagai inputan soalnya misal'node quizduabelas.js data.json'");
+  process.exit()
+  }
+  
 const { log } = require("console");
 const fs = require("fs");
 const readline = require("readline");
@@ -13,10 +17,6 @@ const nilai = JSON.parse(data)
 let wadah = 0;
 let salah =0; 
 
-if (!process.argv[2]) {
-console.log("tolong sertkan nama file sebagai inputan soalnya misal'node quizduabelas.js data.json'");
-process.exit()
-}
 
 nilai.push({"definition":"Sebutkan kota yang memiliki julukan kota Intan?", "term":"Garut"})
 
