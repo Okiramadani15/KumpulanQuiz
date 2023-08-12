@@ -1,4 +1,6 @@
 
+
+const { log } = require("console");
 const fs = require("fs");
 const readline = require("readline");
 const data = fs.readFileSync("data.json", "utf-8");
@@ -8,12 +10,16 @@ const rl = readline.createInterface({
   prompt: "jawaban!: ",
 });
 
+
 const nilai = JSON.parse(data);
 let wadah = 0;
 let salah =0; 
 
 nilai.push({"definition":"Sebutkan kota yang memiliki julukan kota Intan?", "term":"Garut"})
 
+if (!process.argv[2]){
+console.log("tolong sertkana nama file sebagai inputan soalnya misal'node quizduabelas.js data.json'");
+}
 console.log("Selamat datang di permainan Tebak Kata, silahkan isi jawabannya dengan benar ya!");
 console.log("pertanyaan:", nilai[wadah].definition);
 rl.prompt();
@@ -32,9 +38,9 @@ rl.on("line", (hasil) => {
    } else if(hasil.toLowerCase() === "skip") {
     nilai.push(nilai[wadah])
     console.log('')
-    salah++
+    wadah++
     console.log('pertanyaan',nilai[wadah].definition.toLowerCase())
-    kesalahan = 0;
+    salah = 0;
     }else {
     salah++
     console.log(`Waduh, Anda kurang beruntung! coba lagi ${salah} kali.`);
