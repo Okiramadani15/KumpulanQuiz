@@ -3,29 +3,29 @@
 const { log } = require("console");
 const fs = require("fs");
 const readline = require("readline");
-const data = fs.readFileSync("data.json", "utf-8");
+const data = fs.readFileSync(`./${process.argv[2]}`, "utf-8");
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
   prompt: "jawaban!: ",
 });
-
-
-const nilai = JSON.parse(data);
+const nilai = JSON.parse(data)
 let wadah = 0;
 let salah =0; 
 
+if (!process.argv[2]) {
+console.log("tolong sertkan nama file sebagai inputan soalnya misal'node quizduabelas.js data.json'");
+process.exit()
+}
+
 nilai.push({"definition":"Sebutkan kota yang memiliki julukan kota Intan?", "term":"Garut"})
 
-if (!process.argv[2]=== data);{
-  fs.readFileSync("data.json", "utf-8")
-console.log("tolong sertkan nama file sebagai inputan soalnya misal'node quizduabelas.js data.json'");
-}
+
 console.log("Selamat datang di permainan Tebak-tebakan, kamu akan diberikan pertanyaan dari file ini\n untuk bermain, jawablah dengan jawaban yang sesuai.\n silahkan isi jawabannya dengan benar ya!\n gunakan skip untuk menangguhkan pertanyaan dan diakhir pertanyaan yang akan ditanyakan.");
 console.log("pertanyaan:", nilai[wadah].definition);
 rl.prompt();
 
-rl.on("line", (hasil) => {
+rl.on("line", (jawaban) => {
   if (hasil.toString() === nilai[wadah].term.toLowerCase()) {
     console.log("Selamat anda benar!");
     wadah++;
@@ -36,7 +36,7 @@ rl.on("line", (hasil) => {
     }
     console.log("pertanyaan:", nilai[wadah].definition.toLowerCase());
 
-   } else if(hasil.toLowerCase() === "skip") {
+   } else if(jawaban.toLowerCase() === "skip") {
     nilai.push(nilai[wadah])
     console.log('')
     wadah++
