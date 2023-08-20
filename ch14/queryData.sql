@@ -38,43 +38,34 @@ INSERT INTO Dosen (ID_Dosen,Nama_Dosen) VALUES
 SELECT * FROM Dosen;
 
 CREATE TABLE Mata_kuliah(
-    ID_Matakuliah VARCHAR(10) PRIMARY KEY NOT NULL,
-    Nama_Matakuliah VARCHAR(100) NOT NULL,
-    ID_Dosen VARCHAR(10) NOT NULL,
-    ID_Jurusan VARCHAR (10) NOT NULL,
-    Sks INTEGER (1)  NOT NULL,
-     FOREIGN KEY(ID_Dosen) REFERENCES Dosen (ID_Dosen),
-     FOREIGN KEY(ID_Jurusan) REFERENCES Jurusan (ID_Jurusan)
+    ID_Matkul VARCHAR(10) PRIMARY KEY NOT NULL,
+    Nama_Matkul VARCHAR(100) NOT NULL,
+    Sks INTEGER (1)  NOT NULL
 );
 
-INSERT INTO Mata_kuliah ( ID_Matakuliah, Nama_Matakuliah, ID_Dosen, ID_Jurusan,Sks,) VALUES 
-("MK001","Learn Logic javascrpits","D001","J002", "5"),
-("MK002","Learn sqlite3","D001","J001", "4"),
-("MK003","Learn postgreSql", "D001","J001","4");
+INSERT INTO Mata_kuliah (ID_Matkul,Nama_Matkul,Sks) VALUES 
+("MK001","Javascripts",4),
+("MK002","Database",4),
+("MK003","Framework",4);
 
 SELECT * FROM Mata_kuliah;
 
 CREATE TABLE KRS(
-    Nim VARCHAR(10) PRIMARY KEY NOT NULL,
-    ID_Jurusan VARCHAR (10) NOT NULL,
+    ID_KRS INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nim VARCHAR(10) NOT NULL,
     ID_Dosen VARCHAR(10) NOT NULL,
-    Nama_Matakuliah VARCHAR(100) NOT NULL,
-    Sks VARCHAR(10) NOT NULL,
     Nilai VARCHAR(2) NOT NULL,
     FOREIGN KEY(Nim) REFERENCES Mahasiswa (Nim),
-    FOREIGN KEY(ID_Jurusan) REFERENCES Jurusan (ID_Jurusan),
-    FOREIGN KEY(ID_Dosen) REFERENCES Dosen(ID_Dosen),
-    FOREIGN KEY(Nama_Matakuliah) REFERENCES Mata_kuliah (Mata_kuliah),
-    FOREIGN KEY(Sks) REFERENCES Mata_kuliah (Sks)
+    FOREIGN KEY(ID_Dosen) REFERENCES Dosen(ID_Dosen)
 );
 
-INSERT INTO KRS ( Nim,ID_Jurusan,Nama_Matakuliah,Sks,Nilai) VALUES
-("M001","J001","D001","Learn sqlite3","4","A"),
-("M002","J001","D001","Learn sqlite3","4","A"),
-("M003","J001","D001","Learn postgreSql","4","A"),
-("M004","J002","D001","Learn Logic javascrpits","5","A"),
-("M005","J002","D001","Learn Logic javascrpits","5","A"),
-("M006","J002","D001","Learn Logic javascrpits","5","A");
+INSERT INTO KRS (Nim,ID_Dosen,Nilai) VALUES
+("M001","D001","A"),
+("M002","D001","A"),
+("M003","D001","A"),
+("M004","D001","A"),
+("M005","D001","A"),
+("M006","D001","A");
 
 SELECT * FROM KRS;
 
