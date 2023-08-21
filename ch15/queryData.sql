@@ -131,8 +131,8 @@ JOIN Mata_kuliah ON KRS.ID_matkul = Mata_kuliah.ID_matkul
 GROUP BY Mahasiswa.Nim, Mahasiswa.Nama
 HAVING Total_sks > 10;
 
--- challenge 5  tampilkan mahasiswa yang memilki KRS mata kuliah 'Data mining'.
-SELECT Nim,(SELECT Nama FROM Mahasiswa WHERE Mahasiswa.Nim=KRS.Nim)AS Nama, ID_Matkul, (SELECT Nama_Matkul FROM Mata_kuliah WHERE Mata_kuliah.ID_Matkul=KRS.ID_Matkul)AS Matakuliah FROM KRS;
+-- challenge 5  tampilkan mahasiswa yang memiliki KRS mata kuliah 'Data mining'.
+SELECT Nim,(SELECT Nama FROM Mahasiswa WHERE Mahasiswa.Nim=KRS.Nim)AS Nama, ID_Matkul, (SELECT Nama_Matkul FROM Mata_kuliah WHERE Mata_kuliah.ID_Matkul=KRS.ID_Matkul)AS Matakuliah FROM KRS WHERE ID_Matkul='MK004';
 -- challenge 6 tampilkan jumlah mahasiswa untuk setiap dosen.
 SELECT *, (SELECT COUNT(DISTINCT NIM) FROM KRS WHERE KRS.ID_Dosen = Dosen.ID_Dosen) AS Jumlah_mahasiswa FROM Dosen;
 
