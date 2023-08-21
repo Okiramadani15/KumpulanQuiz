@@ -52,7 +52,8 @@ CREATE TABLE Mata_kuliah(
 INSERT INTO Mata_kuliah (ID_Matkul,Nama_Matkul,Sks) VALUES 
 ("MK001","Javascripts",5),
 ("MK002","Database",4),
-("MK003","Framework",4);
+("MK003","Framework",4),
+("MK004","Data Mining",5);
 
 SELECT * FROM Mata_kuliah;
 
