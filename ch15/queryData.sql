@@ -64,27 +64,27 @@ CREATE TABLE KRS(
     ID_Matkul VARCHAR(100) NOT NULL,
     Nilai VARCHAR(2) DEFAULT "C",
     FOREIGN KEY(Nim) REFERENCES Mahasiswa (Nim),
-    FOREIGN KEY(ID_Dosen) REFERENCES Dosen(ID_Dosen)
-    FOREIGN KEY(ID_Matkul) REFERENCES Mata_kuliah (ID_Matkul)
+    FOREIGN KEY(ID_Dosen) REFERENCES Dosen(ID_Dosen),
+    FOREIGN KEY(ID_Matkul) REFERENCES Mata_kuliah(ID_Matkul)
 );
 
 INSERT INTO KRS (Nim,ID_Dosen,ID_Matkul) VALUES
 ("M001","D001","MK001"),
 ("M002","D001","MK002"),
 ("M003","D002","MK003"),
-("M004","D003","MK003"),
-("M005","D003","MK003"),
+("M004","D003","MK004"),
+("M005","D003","MK004"),
 ("M006","D002","MK002"),
 ("M007","D001","MK001"),
 ("M008","D002","MK001"),
 ("M009","D003","MK002"),
 ("M002","D002","MK001"),
-("M003","D001","MK003"),
+("M003","D001","MK004"),
 ("M005","D001","MK001"),
 ("M001","D003","MK001"),
 ("M007","D001","MK002"),
 ("M008","D003","MK003"),
-("M001","D002","MK003"),
+("M001","D002","MK004"),
 ("M005","D002","MK002"),
 ("M003","D001","MK002"),
 ("M002","D003","MK001");
@@ -132,11 +132,7 @@ GROUP BY Mahasiswa.Nim, Mahasiswa.Nama
 HAVING Total_sks > 10;
 
 -- challenge 5  tampilkan mahasiswa yang memilki KRS mata kuliah 'Data mining'.
-SELECT KRS.Nim, Mahasiswa.Nama AS Nama_mahasiswa, KRS.ID_matkul, Mata_kuliah.Nama_matkul AS Matkul
-FROM KRS
-JOIN Mahasiswa ON KRS.Nim = Mahasiswa.Nim
-JOIN Mata_kuliah ON KRS.ID_matkul = Mata_kuliah.ID_matkul;
-
+SELECT Nim,(SELECT Nama FROM Mahasiswa WHERE Mahasiswa.Nim=KRS.Nim)AS Nama, ID_Matkul, (SELECT Nama_Matkul FROM Mata_kuliah WHERE Mata_kuliah.ID_Matkul=KRS.ID_Matkul)AS Matakuliah FROM KRS;
 -- challenge 6 tampilkan jumlah mahasiswa untuk setiap dosen.
 SELECT *, (SELECT COUNT(DISTINCT NIM) FROM KRS WHERE KRS.ID_Dosen = Dosen.ID_Dosen) AS Jumlah_mahasiswa FROM Dosen;
 
@@ -146,6 +142,7 @@ SELECT *,DATE('now')-DATE(Tanggal_lahir) AS Umur FROM Mahasiswa ORDER BY Umur AS
 -- challenge 8 tampilkan KRS yang harus di ulang(D,E), serta tampilkan data mahasiswa jurusan dan dosen,
 --secara lengkap. gunakan mode JOIN dan WHERE clause(solusi terdiri dari 2 syntax SQL). 
 SELECT DISTINCT * FROM KRS JOIN Mahasiswa ON KRS.Nim = Mahasiswa.Nim JOIN Jurusan ON Jurusan.ID_jurusan = Mahasiswa.ID_Jurusan JOIN Dosen ON Dosen.ID_Dosen = KRS.ID_Dosen WHERE Nilai >= 'D';
+
 
 
 
