@@ -44,7 +44,7 @@ CREATE TABLE Mata_kuliah(
 );
 
 INSERT INTO Mata_kuliah (ID_Matkul,Nama_Matkul,Sks) VALUES 
-("MK001","Javascripts",4),
+("MK001","Javascripts",5),
 ("MK002","Database",4),
 ("MK003","Framework",4);
 
@@ -54,18 +54,20 @@ CREATE TABLE KRS(
     ID_KRS INTEGER PRIMARY KEY AUTOINCREMENT,
     Nim VARCHAR(10) NOT NULL,
     ID_Dosen VARCHAR(10) NOT NULL,
+    ID_Matkul VARCHAR(100) NOT NULL,
     Nilai VARCHAR(2) NOT NULL,
     FOREIGN KEY(Nim) REFERENCES Mahasiswa (Nim),
     FOREIGN KEY(ID_Dosen) REFERENCES Dosen(ID_Dosen)
+    FOREIGN KEY(ID_Matkul) REFERENCES Mata_kuliah (ID_Matkul)
 );
 
-INSERT INTO KRS (Nim,ID_Dosen,Nilai) VALUES
-("M001","D001","A"),
-("M002","D001","A"),
-("M003","D001","A"),
-("M004","D001","A"),
-("M005","D001","A"),
-("M006","D001","A");
+INSERT INTO KRS (Nim,ID_Dosen,ID_Matkul,Nilai) VALUES
+("M001","D001","MK001","A"),
+("M002","D001","MK001","A"),
+("M003","D001","MK002","A"),
+("M004","D001","MK002","A"),
+("M005","D001","MK003","A"),
+("M006","D001","MK003","A");
 
 SELECT * FROM KRS;
 
