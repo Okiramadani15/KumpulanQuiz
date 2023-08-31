@@ -1,28 +1,15 @@
 import { db } from "./connect.js";
 
-export default class Jurusan {
+export default class login {
   constructor(obj) {
-    this.idjurusan = obj.idjurusan;
-    this.namajurusan = obj.namajurusan;
+    this.username = obj.username;
+    this.pass = obj.pass;
   }
-  static Username(next) {
-    db.run(`INSERT INTO mahasiswa (nim, nama, tanggal_lahir, alamat, idjurusan) VALUES (?,?,?,?,?)`, [this.nim, this.nama, this.tanggal_lahir, this.alamat, this.idjurusan], (err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("Data mahasiswa berhasil ditambahkan.");
-        next();
-      }
+  static Username(username,next) {
+    db.get(`SELECT * FROM login WHERE username =?`, [username], (err, rows) => {
+      if (err) { throw err
+      } else next(rows);
     });
   }
-  static password(next) {
-    db.run(`INSERT INTO mahasiswa (nim, nama, tanggal_lahir, alamat, idjurusan) VALUES (?,?,?,?,?)`, [this.nim, this.nama, this.tanggal_lahir, this.alamat, this.idjurusan], (err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("Data mahasiswa berhasil ditambahkan.");
-        next();
-      }
-    });
-  }
+
 }
