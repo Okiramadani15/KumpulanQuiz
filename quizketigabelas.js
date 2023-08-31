@@ -105,7 +105,7 @@ switch (command) {
           x.complete = "[x]";
           console.log(`${index + 1}. ${x.complete}. ${x.title}`);
         } else if (!x.complete) {
-          x.complete = "[ ]";
+          x.complete = "[]";
           console.log(`${index + 1}. ${x.complete}. ${x.title}`);
         }
       }

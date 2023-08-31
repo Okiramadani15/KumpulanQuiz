@@ -1,7 +1,7 @@
 
 if (!process.argv[2]) {
   console.log("tolong sertkan nama file sebagai inputan soalnya misal'node quizduabelas.js data.json'");
-  process.exit()
+  process.exit(1)
   }
   
 const { log } = require("console");

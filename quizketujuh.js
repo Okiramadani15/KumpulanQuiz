@@ -1,5 +1,5 @@
 function wierdMultiply(sentence){
-    if (sentence < 10  ){
+    if (sentence <= 10  ){
         return sentence
     }
     let result = 1

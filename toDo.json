@@ -1,0 +1,26 @@
+[
+   {
+      "title": "makan malam",
+      "complete": false,
+      "tag": [
+         "mie",
+         "goreng",
+         "ayam"
+      ]
+   },
+   {
+      "title": "makan siang",
+      "complete": true,
+      "tag": []
+   },
+   {
+      "title": "minum jus",
+      "complete": false,
+      "tag": []
+   },
+   {
+      "title": "",
+      "complete": false,
+      "tag": []
+   }
+]
