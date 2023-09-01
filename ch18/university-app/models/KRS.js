@@ -28,9 +28,9 @@ export default class KRS {
       next(rows);
     });
   }
-  static cari(next) {
-    const sql = "SELECT * FROM kontrak WHERE id = ?";
-    db.get(sql, [this.id], (err, rows) => {
+  static cari(nim, next) {
+    const sql = "SELECT * FROM kontrak WHERE nim = ?";
+    db.all(sql, [nim], (err, rows) => {
       if (err) {
         console.log("Gagal mencari Nilai");
       }

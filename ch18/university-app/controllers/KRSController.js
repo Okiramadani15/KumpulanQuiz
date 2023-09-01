@@ -53,20 +53,17 @@ Silahkan pilih opsi dibawah ini :
     });
   }
   static cari() {
-    rl.question("Masukkan id: ", (id) => {
-      KRS.id = id;
-      KRS.cari((data) => {
+    rl.question("Masukkan nim: ", (nim) => {
+      KRS.cari(nim, (data) => {
         if (!data) {
           console.log("Data Nilai tidak ditemukan");
           KRSController.menu();
         } else {
           console.log("Data mahasiswa");
-          console.log(`ID: ${data.id}`);
-          console.log(`NIM: ${data.nim}`);
-          console.log(`Kode Matkul: ${data.Kodematkul}`);
-          console.log(`ID Dosen: ${data.iddosen}`);
-          console.log(`Nilai: ${data.Nilai}`);
-          KRSController.menu();
+          KRS.find(function (data) {
+            showTable(data);
+            KRSController.menu();
+          });
         }
       });
     });
@@ -103,11 +100,11 @@ Silahkan pilih opsi dibawah ini :
       showTable(data);
       rl.question(`Tambah Nilai: `, (Nilai) => {
         rl.question(`Masukkan id Kontrak : `, (id) => {
-          KRS.updateNilai(Nilai,id,() => {
+          KRS.updateNilai(Nilai, id, () => {
             KRS.find(function (data) {
               showTable(data);
-              KRSController.menu()
-            })
+              KRSController.menu();
+            });
           });
         });
       });
