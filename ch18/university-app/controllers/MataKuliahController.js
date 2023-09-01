@@ -51,7 +51,7 @@ Silahkan pilih opsi dibawah ini :
           MataKuliahController.menu();
         } else {
           console.log("Cari Mata kuliah");
-          console.log(`NIM: ${data.Kodematkul}`);
+          console.log(`Kode Matkul: ${data.Kodematkul}`);
           console.log(`Nama: ${data.namamatkul}`);
           console.log(`SKS: ${data.SKS}`);
           MataKuliahController.menu();

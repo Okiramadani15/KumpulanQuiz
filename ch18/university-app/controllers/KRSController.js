@@ -1,7 +1,13 @@
 import Table from "cli-table";
 import KRS from "../models/KRS.js";
 import { rl, menuUtama } from "../university.js";
-import { showTable } from "../views/KRSView.js";
+import Mahasiswa from "../models/Mahasiswa.js";
+import { showTable as showTableMahasiswa } from "../views/MahasiswaView.js";
+import { showTable as showTablematkul } from "../views/MataKuliahView.js";
+import { showTable as showTabledosen } from "../views/DosenView.js";
+import MataKuliah from "../models/MataKuliah.js";
+import { showTable as showTable } from "../views/KRSView.js";
+import Dosen from "../models/Dosen.js";
 
 export default class KRSController {
   static menu() {
@@ -10,8 +16,9 @@ Silahkan pilih opsi dibawah ini :
 [1] Kontrak Nilai 
 [2] Cari Data Nilai
 [3] Tambah Kontrak
-[4] Hapus Kontrak
-[5] Kembali       
+[4] update Kontrak
+[5] hapus Kontrak
+[6] Kembali       
         `);
     rl.question("masukan salah satu nomor dari opsi diatas: ", (answer) => {
       switch (answer) {
@@ -25,9 +32,12 @@ Silahkan pilih opsi dibawah ini :
           KRSController.tambah();
           break;
         case "4":
-          KRSController.hapus1();
+          KRSController.updateNilai();
           break;
         case "5":
+          KRSController.hapus1();
+          break;
+        case "6":
           menuUtama();
           break;
         default:
@@ -63,17 +73,18 @@ Silahkan pilih opsi dibawah ini :
   }
   static tambah() {
     console.log("Menambahkan Nilai baru");
-    rl.question("Masukkan ID: ", (id) => {
+    Mahasiswa.find(function (datamahasiswa) {
+      showTableMahasiswa(datamahasiswa);
       rl.question("Masukkan NIM Mahasiswa : ", (nim) => {
-        rl.question("Masukkan Kode Matkul: ", (Kodematkul) => {
-          rl.question("Masukkan ID Dosen: ", (iddosen) => {
-            rl.question("Masukkan Nilai: ", (Nilai) => {
-              KRS.find((rows) => {
-                KRS.id = id;
+        MataKuliah.find(function (datamatkul) {
+          showTablematkul(datamatkul);
+          rl.question("Masukkan Kode Matkul: ", (Kodematkul) => {
+            Dosen.find(function (datadosen) {
+              showTabledosen(datadosen);
+              rl.question("Masukkan ID Dosen: ", (iddosen) => {
                 KRS.nim = nim;
                 KRS.Kodematkul = Kodematkul;
                 KRS.iddosen = iddosen;
-                KRS.Nilai = Nilai;
                 KRS.tambah(() => {
                   KRS.find((data) => {
                     showTable(data);
@@ -87,8 +98,23 @@ Silahkan pilih opsi dibawah ini :
       });
     });
   }
+  static updateNilai(next, id) {
+    KRS.find(function (data) {
+      showTable(data);
+      rl.question(`Tambah Nilai: `, (Nilai) => {
+        rl.question(`Masukkan id Kontrak : `, (id) => {
+          KRS.updateNilai(Nilai,id,() => {
+            KRS.find(function (data) {
+              showTable(data);
+              KRSController.menu()
+            })
+          });
+        });
+      });
+    });
+  }
   static hapus1() {
-    rl.question("Masukkan ID Kontrak: ", (id) => {
+    rl.question("Masukkan Nim Mahasiswa: ", (id) => {
       KRS.hapus(id, () => {
         KRSController.menu();
       });

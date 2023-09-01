@@ -3,7 +3,7 @@ import Table from "cli-table";
 export function showTable(data = []) {
   var table = new Table({
     head: ["nim", "nama", "tanggal_lahir", "alamat", "idjurusan", "namajurusan"],
-    colWidths: [10, 10, 10, 20, 20, 30],
+    colWidths: [10, 10, 20, 20, 20, 30],
   });
 
   data.forEach((item) => {

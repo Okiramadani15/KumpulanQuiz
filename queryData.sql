@@ -81,16 +81,16 @@ CREATE TABLE hasilbelajar(
     FOREIGN KEY(iddosen) REFERENCES dosen (iddosen)
 );
 
-INSERT INTO hasilbelajar (nim,Kodematkul,iddosen,nilai) VALUES
-("M001","MK001",'D001',''),
-("M002","MK002",'D002',''),
-("M003","MK003",'D003',''),
-("M004","MK003",'D002',''),
-("M005","MK003",'D002',''),
-("M006","MK002",'D001',''),
-("M007","MK001",'D003',''),
-("M008","MK001",'D002',''),
-("M009","MK002",'D001','');
+INSERT INTO kontrak (nim,Kodematkul,iddosen) VALUES
+("M001","MK001",'D001'),
+("M002","MK002",'D002'),
+("M003","MK003",'D003'),
+("M004","MK003",'D002'),
+("M005","MK003",'D002'),
+("M006","MK002",'D001'),
+("M007","MK001",'D003'),
+("M008","MK001",'D002'),
+("M009","MK002",'D001');
 
 SELECT * FROM hasilbelajar;
 

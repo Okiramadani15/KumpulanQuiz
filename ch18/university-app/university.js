@@ -5,6 +5,7 @@ import DosenController from "./controllers/DosenController.js";
 import MataKuliahController from "./controllers/MataKuliahController.js";
 import KRSController from "./controllers/KRSController.js";
 import login from "./models/login.js";
+import Table from "cli-table";
 
 export const rl = readLine.createInterface({
   input: process.stdin,
